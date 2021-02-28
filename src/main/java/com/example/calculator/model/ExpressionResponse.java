@@ -7,7 +7,7 @@ public class ExpressionResponse {
 
     private String response;
 
-    public ExpressionResponse(String response) {
+    private ExpressionResponse(String response) {
         this.response = response;
     }
 
