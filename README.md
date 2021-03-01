@@ -12,7 +12,7 @@
 - There are two API endpoints in the service :
   - `http://localhost:8080/api/calculate`
   - `http://localhost:8080/api/frequent`
-  - Former is a POST request and the later GET request.
+  - Former is a POST request, and the later GET request.
 
 - To test the first API we need a `RequestBody`. A sample payload for the same is 
 ```json
@@ -31,3 +31,6 @@
   "response": "int/char"
 }
 ```
+
+- Design and development is mentioned in the file design_and_dev.md
+ 

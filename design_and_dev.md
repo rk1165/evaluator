@@ -5,7 +5,7 @@
   - The second is a service which returns the most used operator for a user since its lifetime
 
 #### Assumptions
-- Only +, -, / and * operations are supported and the result returned is always integer.
+- Only +, -, / and * operations are supported, and the result returned is always integer.
 - Unary operator expression is not supported
 - The algorithm for converting from infix to postfix will correctly parse all valid infix expressions, but doesn't reject all invalid expression. It however rejects expression which have characters other than digits, operator, and parentheses.
 
