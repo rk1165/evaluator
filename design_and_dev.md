@@ -11,8 +11,8 @@
 
 
 #### Evaluation of BODMAS mathematical expression.
-- The approach followed
-  - Convert the given infix expression to postfix expression. So something like 1 + (3 - 2)translates to "1 3 2 - +". The algorithm used for this process is [Shunting-yard Algorithm](https://en.wikipedia.org/wiki/Shunting-yard_algorithm)
+- The approach followed:
+  - Convert the given infix expression to postfix expression. So something like 1 + (3 - 2) translates to "1 3 2 - +". The algorithm used for this process is [Shunting-yard Algorithm](https://en.wikipedia.org/wiki/Shunting-yard_algorithm)
   - It can handle expressions with multiple digits.
   - Next we evaluate the expression using stack.
   - During the calculation of the given expression we also save the user in the database and the number of operators used in their expression.

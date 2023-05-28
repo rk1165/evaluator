@@ -34,4 +34,5 @@
 ```
 
 - Design and development is mentioned in the file `design_and_dev.md`
+- There is also a simple html file `calculate.html` which can be used to test the API from a browser.
  
