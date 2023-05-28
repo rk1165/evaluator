@@ -1,16 +1,15 @@
 package com.example.calculator.parser;
 
 import com.example.calculator.exceptions.ExpressionServiceException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
 
 @Component
+@Slf4j
 public class InfixToPostfix {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(InfixToPostfix.class);
 
     private static final Map<Character, Integer> map = new HashMap<>();
 
@@ -30,7 +29,7 @@ public class InfixToPostfix {
     public Queue<String> postfix(String infix) {
 
         if (!isValid(infix)) {
-            LOGGER.error("{} is not a valid infix", infix);
+            log.error("{} is not a valid infix", infix);
             throw new ExpressionServiceException("Given infix expression is invalid");
         }
 
@@ -64,7 +63,7 @@ public class InfixToPostfix {
         while (!operatorStack.isEmpty())
             output.add("" + operatorStack.pop());
 
-        LOGGER.info("Infix {} is converted to postfix : {}", infix, output);
+        log.info("Infix {} is converted to postfix : {}", infix, output);
         return output;
     }
 

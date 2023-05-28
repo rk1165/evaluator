@@ -1,16 +1,14 @@
 package com.example.calculator.parser;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.Queue;
 import java.util.Stack;
 
 @Component
+@Slf4j
 public class EvaluatePostfix {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(EvaluatePostfix.class);
 
     /**
      * Given a valid postfix expression, evaluate it.
@@ -20,7 +18,7 @@ public class EvaluatePostfix {
      */
     public int evaluate(Queue<String> postfix) {
 
-        LOGGER.info("Evaluating {}", postfix);
+        log.info("Evaluating {}", postfix);
         Stack<Integer> stack = new Stack<>();
 
         while (!postfix.isEmpty()) {
@@ -41,7 +39,7 @@ public class EvaluatePostfix {
             }
         }
 
-        LOGGER.info("Expression evaluates to {}", stack.peek());
+        log.info("Expression evaluates to {}", stack.peek());
         return stack.pop();
     }
 

@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS "USER" CASCADE;
 
-CREATE TABLE user (
+CREATE TABLE "user" (
     user_id varchar(50),
     plus_count integer,
     minus_count integer,

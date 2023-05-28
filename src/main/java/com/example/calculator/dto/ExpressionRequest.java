@@ -1,4 +1,4 @@
-package com.example.calculator.model;
+package com.example.calculator.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

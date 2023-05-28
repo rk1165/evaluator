@@ -1,6 +1,6 @@
 package com.example.calculator.exceptions;
 
-import com.example.calculator.model.ErrorMessage;
+import com.example.calculator.dto.ErrorMessage;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

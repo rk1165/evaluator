@@ -1,5 +1,5 @@
-MOST_FREQUENT_ENDPOINT = "http://localhost:8080/api/frequent"
-CALCULATE_EXPRESSION_ENDPOINT = "http://localhost:8080/api/expression"
+MOST_FREQUENT_ENDPOINT = "http://localhost:8080/api/v1/frequent"
+CALCULATE_EXPRESSION_ENDPOINT = "http://localhost:8080/api/v1/expression"
 
 var s1 = document.getElementById("calculate");
 s1.addEventListener("click", e => {

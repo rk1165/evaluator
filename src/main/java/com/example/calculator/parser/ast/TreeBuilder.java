@@ -6,13 +6,13 @@ public class TreeBuilder {
 
     ExpressionTree buildTree(String[] postfix) {
         Stack<ExpressionTree> stack = new Stack<>();
-        for (int i = 0; i < postfix.length; i++) {
-            if (isNumeric(postfix[i])) {
-                stack.push(new ExpressionTree(postfix[i]));
+        for (String s : postfix) {
+            if (isNumeric(s)) {
+                stack.push(new ExpressionTree(s));
             } else {
                 ExpressionTree right = stack.pop();
                 ExpressionTree left = stack.pop();
-                ExpressionTree node = new ExpressionTree(postfix[i]);
+                ExpressionTree node = new ExpressionTree(s);
                 node.left = left;
                 node.right = right;
                 stack.push(node);

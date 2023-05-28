@@ -11,8 +11,6 @@ public class ExpressionTree {
     }
 
     public int evaluate() {
-        if (this == null)
-            return 0;
         if (this.left == null && this.right == null)
             return Integer.parseInt(this.val);
 

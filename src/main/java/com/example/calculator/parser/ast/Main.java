@@ -7,7 +7,7 @@ public class Main {
         ExpressionTree expressionTree = builder.buildTree(new String[]{"3", "4", "+", "2", "*", "7", "/"});
         System.out.println(expressionTree.evaluate());
 
-        expressionTree = builder.buildTree(new String[] {"100","200","+","2","/","5","*","7","+"});
+        expressionTree = builder.buildTree(new String[]{"100", "200", "+", "2", "/", "5", "*", "7", "+"});
         System.out.println(expressionTree.evaluate());
     }
 }

@@ -1,24 +1,21 @@
 package com.example.calculator.service.impl;
 
+import com.example.calculator.entity.User;
 import com.example.calculator.exceptions.ExpressionServiceException;
-import com.example.calculator.model.User;
 import com.example.calculator.parser.EvaluatePostfix;
 import com.example.calculator.parser.InfixToPostfix;
 import com.example.calculator.repository.ExpressionRepository;
 import com.example.calculator.service.ExpressionService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Iterator;
-import java.util.Optional;
-import java.util.Queue;
+import java.util.*;
 
 @Service
+@Slf4j
 public class ExpressionServiceImpl implements ExpressionService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ExpressionServiceImpl.class);
 
     @Autowired
     private ExpressionRepository expressionRepository;
@@ -38,7 +35,7 @@ public class ExpressionServiceImpl implements ExpressionService {
             countAndPersistUser(postfix, userId);
             return evaluatePostfix.evaluate(postfix);
         } catch (IllegalArgumentException ex) {
-            LOGGER.error("Received incorrect expression {}", expression);
+            log.error("Received incorrect expression {}", expression);
             throw new ExpressionServiceException("Given expression is invalid");
         }
     }
@@ -97,7 +94,25 @@ public class ExpressionServiceImpl implements ExpressionService {
             }
             return mostUsed;
         } else {
-            LOGGER.error("User with id {} doesn't exist", userId);
+            log.error("User with id {} doesn't exist", userId);
+            throw new ExpressionServiceException("User with id " + userId + " doesn't exist");
+        }
+    }
+
+    @Override
+    public Map<String, Integer> frequency(String userId) {
+        Optional<User> optionalUser = expressionRepository.findById(userId);
+        if (optionalUser.isPresent()) {
+            Map<String, Integer> counts = new HashMap<>();
+            User user = optionalUser.get();
+            counts.put("+", user.getPlusCount());
+            counts.put("-", user.getMinusCount());
+            counts.put("*", user.getMultiplyCount());
+            counts.put("/", user.getDivisionCount());
+
+            return counts;
+        } else {
+            log.error("User with id {} doesn't exist", userId);
             throw new ExpressionServiceException("User with id " + userId + " doesn't exist");
         }
     }
