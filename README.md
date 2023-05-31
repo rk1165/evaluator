@@ -4,11 +4,12 @@
   - Given a mathematical expression, evaluate it and return the result.
   - Given a `user_id`, return the most frequent operator used by them.
   - Given a `user_id`, return the counts of all the operators user by them.
+- It uses H2 as an in-memory database.
 
 ### How to run it locally?
 - Use `sh run.sh` command to boot up the application
  
-- There are two API endpoints in the service :
+- There are three API endpoints in the service :
   - **POST** : `http://localhost:8080/api/v1/expression`
   - **GET** : `http://localhost:8080/api/v1/frequent`
   - **GET** : `http://localhost:8080/api/v1/count`

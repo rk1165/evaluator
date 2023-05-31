@@ -1,0 +1,29 @@
+{
+  "family": "java-task-demo",
+  "containerDefinitions": [
+    {
+      "name": "java-container-demo",
+      "image": "evaluator:latest",
+      "cpu": 0,
+      "portMappings": [
+        {
+          "containerPort": 8080,
+          "hostPort": 8080,
+          "protocol": "tcp"
+        }
+      ],
+      "essential": true,
+      "environment": [],
+      "mountPoints": [],
+      "volumesFrom": []
+    }
+  ],
+  "taskRoleArn": "arn:aws:iam::141120989424:role/java-ecsTaskRole",
+  "executionRoleArn": "arn:aws:iam::141120989424:role/java-ecsTaskExecutionRole",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "cpu": "256",
+  "memory": "512"
+}
