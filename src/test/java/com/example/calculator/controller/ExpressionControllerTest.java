@@ -31,7 +31,7 @@ public class ExpressionControllerTest {
 
         Mockito.when(expressionService.calculate(Mockito.anyString(), Mockito.anyString())).thenReturn(4);
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .post("/api/expression")
+                .post("/api/v1/expression")
                 .accept(MediaType.APPLICATION_JSON)
                 .content("{\"userId\" : \"rav\", \"expression\" : \"1 + 3\"}")
                 .contentType(MediaType.APPLICATION_JSON);
@@ -46,7 +46,7 @@ public class ExpressionControllerTest {
 
         Mockito.when(expressionService.calculate(isNull(), Mockito.anyString())).thenThrow(ExpressionServiceException.class);
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .post("/api/expression")
+                .post("/api/v1/expression")
                 .accept(MediaType.APPLICATION_JSON)
                 .content("{\"expression\" : \"1 + 3\"}")
                 .contentType(MediaType.APPLICATION_JSON);
@@ -61,7 +61,7 @@ public class ExpressionControllerTest {
 
         Mockito.when(expressionService.calculate(Mockito.anyString(), isNull())).thenReturn(0);
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .post("/api/expression")
+                .post("/api/v1/expression")
                 .accept(MediaType.APPLICATION_JSON)
                 .content("{\"userId\" : \"rav\"}")
                 .contentType(MediaType.APPLICATION_JSON);
@@ -74,7 +74,7 @@ public class ExpressionControllerTest {
     public void testFrequent_whenGivenNoUserId_expectException() throws Exception {
         Mockito.when(expressionService.frequent(isNull())).thenThrow(ExpressionServiceException.class);
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .get("/api/frequent")
+                .get("/api/v1/frequent")
                 .accept(MediaType.APPLICATION_JSON)
                 .queryParam("userId", "")
                 .contentType(MediaType.APPLICATION_JSON);
