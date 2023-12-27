@@ -14,4 +14,8 @@
 - Use `bash test.sh` to run curl commands against the various REST endpoints.
 - Design and development is mentioned in the file `design_and_dev.md`
 - There is also an html file `calculate.html` which can be used to test the API from a browser.
- 
+
+
+
+https://github.com/rk1165/evaluator/assets/8726141/be7da065-0cfc-4da6-a6c5-76c505b71aee
+
