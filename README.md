@@ -1,39 +1,17 @@
 ### Simple BODMAS Mathematical Expression Evaluator Service
 
 - This is a simple SpringBoot repo which contains REST endpoints for following operations:
-  - Given a mathematical expression, evaluate it and return the result.
-  - Given a `user_id`, return the most frequent operator used by them.
-  - Given a `user_id`, return the counts of all the operators user by them.
+    - Given a mathematical expression, evaluate it and return the result.
+    - Given a `user_id`, return the most frequent operator used by that user.
+    - Given a `user_id`, return the counts of all the operators used by that user.
 - It uses H2 as an in-memory database.
+- `awsInfra` is used to provision infra on AWS to deploy this project and run it in AWS FARGATE.
+- **GitHub Actions** is used for deploying it to AWS using Docker.
 
-### How to run it locally?
-- Use `sh run.sh` command to boot up the application
- 
-- There are three API endpoints in the service :
-  - **POST** : `http://localhost:8080/api/v1/expression`
-  - **GET** : `http://localhost:8080/api/v1/frequent`
-  - **GET** : `http://localhost:8080/api/v1/count`
+### How to run and test it locally?
 
-- To test the first API we need a `RequestBody`. A sample payload for the same is 
-```json
-{
-    "userId":"abc",
-    "expression" : "23 - (17 * 2 - (10 / 2))"
-}
-```
-
-- To test the second and third API we need a query parameter. 
-- Sample Requests for both of them:
-  - `http://localhost:8080/api/v1/frequent?userId=abc`
-  - `http://localhost:8080/api/v1/count?userId=abc`
-
-- Response is in the format of
-```json
-{
-  "response": "int/char"
-}
-```
-
+- Use `bash run.sh` command to boot up the application.
+- Use `bash test.sh` to run curl commands against the various REST endpoints.
 - Design and development is mentioned in the file `design_and_dev.md`
-- There is also a simple html file `calculate.html` which can be used to test the API from a browser.
+- There is also an html file `calculate.html` which can be used to test the API from a browser.
  

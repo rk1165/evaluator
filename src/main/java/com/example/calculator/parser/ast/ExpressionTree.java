@@ -17,14 +17,14 @@ public class ExpressionTree {
         int left = this.left.evaluate();
         int right = this.right.evaluate();
 
-        if (this.val.equals("+"))
-            return left + right;
-        else if (this.val.equals("-"))
-            return left - right;
-        else if (this.val.equals("*"))
-            return left * right;
-        else
-            return left / right;
+        return switch (this.val) {
+            case "+" -> left + right;
+            case "-" -> left - right;
+            case "*" -> left * right;
+            case "/" -> left / right;
+            case "^" -> (int) Math.pow(left, right);
+            default -> throw new RuntimeException("Unknown Operator");
+        };
 
     }
 }

@@ -28,14 +28,13 @@ public class EvaluatePostfix {
             } else {
                 int num1 = stack.pop();
                 int num2 = stack.pop();
-                if (s.equals("/"))
-                    stack.push(num2 / num1);
-                else if (s.equals("*"))
-                    stack.push(num1 * num2);
-                else if (s.equals("+"))
-                    stack.push(num1 + num2);
-                else if (s.equals("-"))
-                    stack.push(num2 - num1);
+                switch (s) {
+                    case "/" -> stack.push(num2 / num1);
+                    case "*" -> stack.push(num1 * num2);
+                    case "+" -> stack.push(num1 + num2);
+                    case "-" -> stack.push(num2 - num1);
+                    case "^" -> stack.push((int) Math.pow(num2, num1));
+                }
             }
         }
 

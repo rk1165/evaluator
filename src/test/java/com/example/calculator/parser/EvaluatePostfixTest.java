@@ -54,4 +54,12 @@ public class EvaluatePostfixTest {
         String expression = "12 + (4 - 2) + (9";
         Assertions.assertThrows(ExpressionServiceException.class, () -> evaluatePostfix.evaluate(infixToPostfix.postfix(expression)));
     }
+
+    @Test
+    public void whenGivenPowerOperator_evaluateIt() {
+        String expression = "2 ^ 3 + 5 ^ 2";
+        int expected = 33;
+        int actual = evaluatePostfix.evaluate(infixToPostfix.postfix(expression));
+        Assertions.assertEquals(expected, actual);
+    }
 }

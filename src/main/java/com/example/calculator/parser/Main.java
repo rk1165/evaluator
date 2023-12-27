@@ -10,10 +10,10 @@ public class Main {
         InfixToPostfix infixToPostfix = new InfixToPostfix();
         EvaluatePostfix evaluatePostfix = new EvaluatePostfix();
 
-        Queue<String> postfix = infixToPostfix.postfix("3+4*2/(6-2)"); // [3, 4, 2, *, 6, 2, -, /, +]
+        Queue<String> postfix = infixToPostfix.postfix("3+4*2/(6-2)");  // [3, 4, 2, *, 6, 2, -, /, +]
         evaluatePostfix.evaluate(postfix);
 
-        postfix = infixToPostfix.postfix("5*(3+(1-5))/5"); // [5, 3, 1, 5, -, +, *, 5, /]
+        postfix = infixToPostfix.postfix("5*(3+(1-5))/5");              // [5, 3, 1, 5, -, +, *, 5, /]
         evaluatePostfix.evaluate(postfix);
 
         postfix = infixToPostfix.postfix("143 + 122 - 90 * 2");
@@ -22,6 +22,10 @@ public class Main {
         postfix = infixToPostfix.postfix("23 - (17 * 2 - (10 / 2))");
         evaluatePostfix.evaluate(postfix);
 
-        postfix = infixToPostfix.postfix("1 + (3 -2)");
+        postfix = infixToPostfix.postfix("(3 + 4) ^ 2 / 7");
+        evaluatePostfix.evaluate(postfix);
+
+        postfix = infixToPostfix.postfix("(100 + 200) / 2 * 5 + 7");
+        evaluatePostfix.evaluate(postfix);
     }
 }

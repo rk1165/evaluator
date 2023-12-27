@@ -2,6 +2,7 @@ package com.example.calculator.service.impl;
 
 import com.example.calculator.entity.User;
 import com.example.calculator.exceptions.ExpressionServiceException;
+import com.example.calculator.exceptions.UserNotFoundException;
 import com.example.calculator.parser.EvaluatePostfix;
 import com.example.calculator.parser.InfixToPostfix;
 import com.example.calculator.repository.ExpressionRepository;
@@ -42,20 +43,19 @@ public class ExpressionServiceImpl implements ExpressionService {
 
     private void countAndPersistUser(Queue<String> postfix, String userId) {
         Iterator<String> iterator = postfix.iterator();
-        int plus = 0, minus = 0, multiply = 0, divide = 0;
+        int plus = 0, minus = 0, multiply = 0, divide = 0, power = 0;
         while (iterator.hasNext()) {
             String elem = iterator.next();
-            if (elem.equals("+"))
-                plus++;
-            else if (elem.equals("-"))
-                minus++;
-            else if (elem.equals("*"))
-                multiply++;
-            else if (elem.equals("/"))
-                divide++;
+            switch (elem) {
+                case "+" -> plus++;
+                case "-" -> minus++;
+                case "*" -> multiply++;
+                case "/" -> divide++;
+                case "^" -> power++;
+            }
         }
 
-        Optional<User> optionalUser = expressionRepository.findById(userId);
+        Optional<User> optionalUser = expressionRepository.findByUserId(userId);
         User user = null;
         if (optionalUser.isPresent()) {
             user = optionalUser.get();
@@ -63,15 +63,23 @@ public class ExpressionServiceImpl implements ExpressionService {
             user.setMinusCount(user.getMinusCount() + minus);
             user.setMultiplyCount(user.getMultiplyCount() + multiply);
             user.setDivisionCount(user.getDivisionCount() + divide);
+            user.setPowerCount(user.getPowerCount() + power);
         } else {
-            user = new User(userId, plus, minus, multiply, divide);
+            user = User.builder()
+                    .userId(userId)
+                    .plusCount(plus)
+                    .minusCount(minus)
+                    .multiplyCount(multiply)
+                    .divisionCount(divide)
+                    .powerCount(power)
+                    .build();
         }
         expressionRepository.save(user);
     }
 
     @Override
     public char frequent(String userId) {
-        Optional<User> optionalUser = expressionRepository.findById(userId);
+        Optional<User> optionalUser = expressionRepository.findByUserId(userId);
 
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
@@ -91,17 +99,21 @@ public class ExpressionServiceImpl implements ExpressionService {
             }
             if (user.getDivisionCount() > maxCount) {
                 mostUsed = '/';
+                maxCount = user.getDivisionCount();
+            }
+            if (user.getPowerCount() > maxCount) {
+                mostUsed = '^';
             }
             return mostUsed;
         } else {
             log.error("User with id {} doesn't exist", userId);
-            throw new ExpressionServiceException("User with id " + userId + " doesn't exist");
+            throw new UserNotFoundException("User with id " + userId + " doesn't exist");
         }
     }
 
     @Override
     public Map<String, Integer> frequency(String userId) {
-        Optional<User> optionalUser = expressionRepository.findById(userId);
+        Optional<User> optionalUser = expressionRepository.findByUserId(userId);
         if (optionalUser.isPresent()) {
             Map<String, Integer> counts = new HashMap<>();
             User user = optionalUser.get();
@@ -109,11 +121,12 @@ public class ExpressionServiceImpl implements ExpressionService {
             counts.put("-", user.getMinusCount());
             counts.put("*", user.getMultiplyCount());
             counts.put("/", user.getDivisionCount());
+            counts.put("^", user.getPowerCount());
 
             return counts;
         } else {
             log.error("User with id {} doesn't exist", userId);
-            throw new ExpressionServiceException("User with id " + userId + " doesn't exist");
+            throw new UserNotFoundException("User with id " + userId + " doesn't exist");
         }
     }
 }

@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+.terraform/
+*.tfstate
+*.tfstate.backup
+*.DS_Store
+*.terraform.lock.hcl

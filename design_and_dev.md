@@ -23,7 +23,6 @@
 
 ### Additional improvements that can be done
 - To make the service correctly result in evaluating expression with unary operator also
-- To make the service support more operators such as exponentiation.
 - To make the service support double numerals and evaluate them correctly.
 - We can introduce a cache so that for the second service if the user is not present in cache we get the result from DB and cache it.
 

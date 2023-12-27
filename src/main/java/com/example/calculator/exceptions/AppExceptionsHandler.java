@@ -14,7 +14,7 @@ import java.util.Date;
 public class AppExceptionsHandler {
 
     @ExceptionHandler(value = {ExpressionServiceException.class})
-    public ResponseEntity<Object> handleIllegalArgumentException(ExpressionServiceException ex, WebRequest request) {
+    public ResponseEntity<Object> handleExpressionServiceException(ExpressionServiceException ex, WebRequest request) {
         ErrorMessage errorMessage = new ErrorMessage(new Date(), ex.getMessage());
         return new ResponseEntity<>(errorMessage, new HttpHeaders(), HttpStatus.BAD_REQUEST);
     }
@@ -23,5 +23,12 @@ public class AppExceptionsHandler {
     public ResponseEntity<Object> handleOtherException(Exception ex, WebRequest request) {
         ErrorMessage errorMessage = new ErrorMessage(new Date(), ex.getMessage());
         return new ResponseEntity<>(errorMessage, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(value = {UserNotFoundException.class})
+    public ResponseEntity<Object> handleUserNotFoundException(UserNotFoundException ex, WebRequest request) {
+        ErrorMessage errorMessage = new ErrorMessage(new Date(), ex.getMessage());
+        return new ResponseEntity<>(errorMessage, new HttpHeaders(), HttpStatus.NOT_FOUND);
+
     }
 }

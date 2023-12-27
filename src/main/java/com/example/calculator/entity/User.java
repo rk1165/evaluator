@@ -1,25 +1,23 @@
 package com.example.calculator.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
 
-@Entity
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Table(name = "\"user\"")
+@Builder
+@Table(name = "user")
 public class User {
 
     @Id
-    private String userId;
+    private Long id;
 
+    private String userId;
     private int plusCount;
     private int minusCount;
     private int multiplyCount;
     private int divisionCount;
+    private int powerCount;
 }

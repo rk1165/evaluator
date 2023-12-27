@@ -1,7 +1,7 @@
 MOST_FREQUENT_ENDPOINT = "http://localhost:8080/api/v1/frequent"
 CALCULATE_EXPRESSION_ENDPOINT = "http://localhost:8080/api/v1/expression"
 
-var s1 = document.getElementById("calculate");
+const s1 = document.getElementById("calculate");
 s1.addEventListener("click", e => {
     const userId = document.getElementById("userid").value;
     const expression = document.getElementById("expression").value;
@@ -27,7 +27,7 @@ s1.addEventListener("click", e => {
 
 });
 
-var s2 = document.getElementById("frequent");
+const s2 = document.getElementById("frequent");
 s2.addEventListener("click", e => {
 
     const userId = document.getElementById("freqid").value;

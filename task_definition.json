@@ -1,8 +1,8 @@
 {
-  "family": "java-task-demo",
+  "family": "evaluator-task",
   "containerDefinitions": [
     {
-      "name": "java-container-demo",
+      "name": "evaluator-container",
       "image": "evaluator:latest",
       "cpu": 0,
       "portMappings": [

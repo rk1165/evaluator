@@ -14,6 +14,7 @@ public class InfixToPostfix {
     private static final Map<Character, Integer> map = new HashMap<>();
 
     static {
+        map.put('^', 5);
         map.put('/', 4);
         map.put('*', 4);
         map.put('+', 3);
@@ -45,7 +46,7 @@ public class InfixToPostfix {
                 output.add(sb.toString());
                 if (i < infix.length())
                     i -= 1;
-            } else if (ch == '+' || ch == '-' || ch == '*' || ch == '/') {
+            } else if (ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^') {
                 while (!operatorStack.isEmpty() && operatorStack.peek() != '(' && precedence(operatorStack.peek(), ch)) {
                     output.add("" + operatorStack.pop());
                 }
@@ -70,8 +71,8 @@ public class InfixToPostfix {
     /**
      * Checks the precedence of operator1 and operator2
      *
-     * @param op1 operator +, -, *, /
-     * @param op2 operator +, -, *, /
+     * @param op1 operator +, -, *, /, ^
+     * @param op2 operator +, -, *, /, ^
      * @return true if op1 has higher precedence than op2
      */
     private boolean precedence(char op1, char op2) {
@@ -89,7 +90,7 @@ public class InfixToPostfix {
         for (int i = 0; i < expression.length(); i++) {
             char ch = expression.charAt(i);
             if (!(Character.isDigit(ch) || Character.isSpaceChar(ch) || ch == '(' || ch == ')' ||
-                    ch == '+' || ch == '-' || ch == '*' || ch == '/'))
+                    ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^'))
                 return false;
             if (ch == '(')
                 left++;
